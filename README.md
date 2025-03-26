@@ -77,4 +77,17 @@ Created a Virtual Machine: I created a virtual machine and with Windows 10 PRO n
 
 </p>
 <p>
-Ping and Ipconfig /all: To verify "DC-1" and "Client-1" are on the same Virtual Network, in PowerShell we use ping to reach a host. In this example "DC-1's" IP address is 10.0.0.4 and we use command "ping 10.0.0.4 in the PowerShell". If it does not work, make sure the two VM's are on the same Virtual Network and "DC-1's" firewall is disabled. 
+Ping and Ipconfig /all: To verify "DC-1" and "Client-1" are on the same Virtual Network, in PowerShell we use ping to reach a host. In this example "DC-1's" IP address is 10.0.0.4 and we use command "ping 10.0.0.4 in the PowerShell". If it does not work, make sure the two VM's are on the same Virtual Network and "DC-1's" firewall is disabled. The use of ipconfig /all is to view comprehensive network configuration information. In this case we want to confirm the DNS server to show "DC-1's" private IP address.
+</p>
+<br />
+
+<p>
+<img width="1520" alt="Installilng Acitve directory Domain Services" src="https://github.com/user-attachments/assets/958d57b8-44a7-4fea-bd9a-aa1315401d4b" />
+<img width="1502" alt="Installing Active directory Domain Service p2" src="https://github.com/user-attachments/assets/8aa82809-a489-46fb-9ee5-2c228a5a0ab3" />
+<img width="1385" alt="configuring AD as a Domain Controller, mydomain com" src="https://github.com/user-attachments/assets/f676300c-cdb5-4213-84f1-ea142ca3de24" />
+
+</p>
+<p>
+Install Active Directory: Open Server Manager > Add Roles and Features > In wizard, select Role-based or feature-based installation > Select server from the server pool (should be auto populated) > Next > Under Roles, check Active Directory Domain Services > Follow prompts to install and then click Install. After installation, top right, click the notification flag in the Server Manager. Click promote this server to a domain controller > Add a new forest > In Root domain name, mydomain.com > Follow prompts to finish install. Once created the computer should restart.
+</p>
+<br />
