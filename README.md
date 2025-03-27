@@ -91,3 +91,42 @@ Ping and Ipconfig /all: To verify "DC-1" and "Client-1" are on the same Virtual 
 Install Active Directory: Open Server Manager > Add Roles and Features > In wizard, select Role-based or feature-based installation > Select server from the server pool (should be auto populated) > Next > Under Roles, check Active Directory Domain Services > Follow prompts to install and then click Install. After installation, top right, click the notification flag in the Server Manager. Click promote this server to a domain controller > Add a new forest > In Root domain name, mydomain.com > Follow prompts to finish install. Once created the computer should restart.
 </p>
 <br />
+
+<p>
+<img width="1010" alt="Created New User in _Admins, Jane Doe p3" src="https://github.com/user-attachments/assets/206ad513-9076-4235-9c6d-739fa2751faa" />
+  
+</p>
+<p>
+Now that we have the domain installed, a Domain Admin user must be created within the domain. We navigate to Active Directory Users and Computers and create an Organizational Unit (OU) called "_EMPLOYEES". We also create another Organizational Unit called "_ADMINS". To do this we right click mydomain.com and select New and select Organizational Unit to input the name. After that we click on "_ADMINS" and right click to select user to enter information for the admin user. This will include first and last name, user logon name, password, and options regarding password. Once this is completed, we still need to add this user to the "Domain Admins" Security Group. Right click the user and select properties, then select members of to search groups. When populated search "Domain Admins" and then select apply and ok. To manage domain wide settings, create and manage user accounts, configure security policies, an Admin User must be added and created.
+</p>
+<br />
+
+<p>
+<img width="1472" alt="Join client-1 to domain" src="https://github.com/user-attachments/assets/6011cc73-c819-4f87-9f2f-8083eab72c36" />
+<img width="1184" alt="Verify client-1 shows up in ADUC in dc-1" src="https://github.com/user-attachments/assets/615610d7-ace1-4739-9603-eba85b50a39a" />
+
+</p>
+<p>
+From "Client-1" click start and then select system. After that select Rename this PC (advanced), under computer name select change and Computer Name/Domain Changes should generate. In this window under Member of type mydomain.com and select ok. The computer will recognize the domain and asks you to sign in and you will be using Domain Admin you created. In this case I created Jane Doe as a Domain Admin and would sign in under her. The computer prompts you on joining mydomain.com and prompt a restart. I can also go back to "DC-1" to verify the virtual machine, or computer shows up in ADUC.
+</p>
+<br />
+
+<p>
+<img width="1259" alt="From client-1, (jane_admins) allow domain users access to remote desktoop" src="https://github.com/user-attachments/assets/6c70712c-4f2f-4cde-a2b8-885df319bd3d" />
+
+</p>
+<p>
+ Allow "Domain Users" access to remote desktop, after creating users we can log in as normal for a non-administrative user. Click start > System > Remote Desktop > Under User Accounts, Select users that can remotely access this PC > Enter Domain Users in the object names to select. Now all domain users can log in remotely. Normally you would do this with Group Policy that allows you to change many systems at once. 
+</p>
+<br />
+
+<p>
+<img width="608" alt="Configured Domain Group policy to lockout after five times" src="https://github.com/user-attachments/assets/4c42559e-6e32-4e4d-9419-a281731dacb3" />
+<img width="1540" alt="Unlocking account because user failed password more than five times" src="https://github.com/user-attachments/assets/ff2e5c14-f1ed-41cc-a294-207fc583ae4e" />
+<img width="1916" alt="Observation of user logs p2" src="https://github.com/user-attachments/assets/9aa83d35-74d1-4c13-b610-3a6d4fa314d3" />
+
+</p>
+<p>
+After creating domain users, I configured the Domain Group Policy to lockout users for incorrect passwords after five attempts. After configuration I tried to sign in with a domain user purposely using an incorrect password five times. The user’s account was locked due to many attempts to sign incorrectly. I signed up using the Domain Admin account to unlock the users account to have access. To check the attempts, I then went into Event Viewer, Windows Logs, and then Security. Normally 4625 will have specific information on network and IP address information. Event Viewer does show if the audit was a success or failure pertaining to logging into account. 
+</p>
+<br />
